@@ -226,7 +226,7 @@ class Entrust
 
                 $hasAPermission = array();
                 foreach($permissions as $permission) {
-                    if ($this->can($permission)) {
+                    if ($tochthis->can($permission)) {
                         $hasAPermission[] = true;
                     } else {
                         $hasAPermission[] = false;
