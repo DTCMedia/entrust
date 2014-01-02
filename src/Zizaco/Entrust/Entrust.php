@@ -103,10 +103,11 @@ class Entrust
         $filter_name = implode('_',$roles).'_'.substr(md5($route),0,6);
 
         if (! $result instanceof Closure) {
-            $result = function() use ($roles, $result, $cumulative) {
+	        $tochthis = $this;
+            $result = function() use ($roles, $result, $cumulative, $tochthis) {
                 $hasARole = array();
                 foreach($roles as $role) {
-                    if ($this->hasRole($role)) {
+                    if ($tochthis->hasRole($role)) {
                         $hasARole[] = true;
                     } else {
                         $hasARole[] = false;
@@ -155,10 +156,11 @@ class Entrust
 
         if (! $result instanceof Closure)
         {
-            $result = function() use ($permissions, $result, $cumulative) {
+	        $tochthis = $this;
+            $result = function() use ($permissions, $result, $cumulative, $tochthis ) {
                 $hasAPermission = array();
                 foreach($permissions as $permission) {
-                    if ($this->can($permission)) {
+                    if ($tochthis->can($permission)) {
                         $hasAPermission[] = true;
                     } else {
                         $hasAPermission[] = false;
@@ -211,10 +213,11 @@ class Entrust
 
         if (! $result instanceof Closure)
         {
-            $result = function() use ($roles, $permissions, $result, $cumulative) {
+	        $tochthis = $this;
+            $result = function() use ($roles, $permissions, $result, $cumulative, $tochthis) {
                 $hasARole = array();
                 foreach($roles as $role) {
-                    if ($this->hasRole($role)) {
+                    if ($tochthis->hasRole($role)) {
                         $hasARole[] = true;
                     } else {
                         $hasARole[] = false;
